@@ -21,10 +21,14 @@ const WeekDay = styled.article`
 	background-color: ${({ color }) => color || "cornflowerblue"};
 `;
 
+const Weekend = styled(WeekDay)`
+	opacity: 0.5;
+`;
+
 const Section = ({ day, color }) => {
 	return (
 		<ProgressBar>
-			<WeekDay color={color}>{day}</WeekDay>
+			{day === "S" ? <Weekend>{day}</Weekend> : <WeekDay color={color}>{day}</WeekDay>}
 		</ProgressBar>
 	);
 };
