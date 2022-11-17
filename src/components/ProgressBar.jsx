@@ -2,13 +2,11 @@ import styled from "styled-components";
 
 const ProgressBox = styled.section`
 	display: block;
-	padding-left: 10px;
 	text-align: left;
 	opacity: 0.5;
 	background-color: ${({ color }) => color || "gray"};
 	border-radius: 0 8px 8px 0;
 	width: ${({ percentage }) => percentage + "%" || "20%"};
-	content: "";
 `;
 
 const Container = styled.div`
@@ -19,7 +17,11 @@ const Container = styled.div`
 		position: absolute;
 		margin-left: 50%;
 		transform: translateX(-50%);
-		color: #2d292f;
+		color: ${({ percentage }) => {
+			if (percentage <= 25) return "red";
+			else if (percentage >= 75) return "blue";
+			return "#2d292f";
+		}};
 		font-size: 0.8rem;
 		z-index: 1;
 	}
@@ -27,10 +29,10 @@ const Container = styled.div`
 
 const ProgressBar = ({ percentage, color }) => {
 	return (
-		<Container>
-			<p>{percentage}%</p>
+		<Container percentage={percentage}>
+			<p>{percentage < 100 ? `${percentage} %` : "Done! 🎉"}</p>
 			<ProgressBox color={color} percentage={percentage}>
-				&nbsp;
+                &nbsp;
 			</ProgressBox>
 		</Container>
 	);

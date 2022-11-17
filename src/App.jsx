@@ -14,13 +14,21 @@ const colorArr = [
 
 function App() {
 	return (
-		<MainWrapper>
-			<Header>Progress Tracker</Header>
-			<Divider />
-			{weekDaysArr.map((day, index) => (
-				<Section day={day} color={colorArr[index]} key={index} />
-			))}
-		</MainWrapper>
+		<>
+			<MainWrapper>
+				<Header>Progress Tracker</Header>
+				<Divider />
+				{weekDaysArr.map((day, index) => (
+					<Section day={day} color={colorArr[index]} key={index} />
+				))}
+			</MainWrapper>
+			<Footer>
+				Coded by
+				<a href="https://github.com/line-em" target="_blank" rel="noopener noreferrer">
+					@Line-em
+				</a>
+			</Footer>
+		</>
 	);
 }
 
@@ -41,6 +49,22 @@ const Divider = styled.hr`
 	margin: 15px 0;
 	border: palevioletred 2px solid;
 	opacity: 0.5;
+`;
+
+const Footer = styled.footer`
+	font-size: 0.8rem;
+	margin-top: 15px;
+
+	a,
+	a:visited {
+		margin: 0 4px;
+		transition: all 300ms ease;
+		color: cornflowerblue;
+	}
+
+	a:hover {
+		color: tomato;
+	}
 `;
 
 export default App;
